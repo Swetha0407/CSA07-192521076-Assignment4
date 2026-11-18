@@ -1,0 +1,45 @@
+! Access switch SW-Admin
+ enable
+ configure terminal
+ hostname SW-Admin
+ vlan 10
+  name Office
+ vlan 20
+  name CCTV
+ vlan 30
+  name Guest-WiFi
+ interface range FastEthernet0/1 - 12
+  switchport mode access
+  switchport access vlan 10
+ interface range FastEthernet0/13 - 20
+  switchport mode access
+  switchport access vlan 20
+ interface range FastEthernet0/21 - 24
+  switchport mode access
+  switchport access vlan 30
+ interface GigabitEthernet0/1
+  switchport mode trunk
+  switchport trunk allowed vlan 10,20,30
+  no shutdown
+ end
+
+! Router-on-a-stick example (router interface connected to trunk)
+ interface GigabitEthernet0/0
+  no shutdown
+ interface GigabitEthernet0/0.10
+  encapsulation dot1Q 10
+  ip address 192.168.10.1 255.255.255.0
+ interface GigabitEthernet0/0.20
+  encapsulation dot1Q 20
+  ip address 192.168.20.1 255.255.255.0
+ interface GigabitEthernet0/0.30
+  encapsulation dot1Q 30
+  ip address 192.168.30.1 255.255.255.0
+
+! Guest ACL: deny access to internal office/CCTV networks; permit internet-bound traffic.
+ ip access-list extended GUEST-IN
+  deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
+  deny ip 192.168.30.0 0.0.0.255 192.168.20.0 0.0.0.255
+  permit ip 192.168.30.0 0.0.0.255 any
+ interface GigabitEthernet0/0.30
+  ip access-group GUEST-IN in

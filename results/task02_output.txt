@@ -1,0 +1,10 @@
+n=6
+bus   links  5 max ports on one device 2 single-link failures survived 0/5
+ring  links  6 max ports on one device 2 single-link failures survived 6/6
+star  links  6 max ports on one device 6 single-link failures survived 0/6
+mesh  links 15 max ports on one device 5 single-link failures survived 15/15
+n=20
+bus   links 19 max ports on one device 2 single-link failures survived 0/19
+ring  links 20 max ports on one device 2 single-link failures survived 20/20
+star  links 20 max ports on one device 20 single-link failures survived 0/20
+mesh  links 190 max ports on one device 19 single-link failures survived 190/190

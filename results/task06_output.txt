@@ -1,0 +1,15 @@
+Academic: users~1200, devices~1500, estimated peak 3000 Mbps
+Laboratories: users~600, devices~650, estimated peak 2400 Mbps
+Library: users~500, devices~650, estimated peak 1000 Mbps
+Hostels: users~3000, devices~3600, estimated peak 4500 Mbps
+Auditorium: users~800, devices~850, estimated peak 1200 Mbps
+Data Centre: users~100, devices~250, estimated peak 5000 Mbps
+Assumed uplinks: access-to-distribution 10 Gbps; distribution-to-core 40 Gbps; core-to-DC 2x100 Gbps; internet 2x10 Gbps.
+Academic: peak/uplink=0.30x demand ratio; uplink-to-demand oversubscription=0.30:1 (capacity/demand=3.33x)
+Laboratories: peak/uplink=0.24x demand ratio; uplink-to-demand oversubscription=0.24:1 (capacity/demand=4.17x)
+Library: peak/uplink=0.10x demand ratio; uplink-to-demand oversubscription=0.10:1 (capacity/demand=10.00x)
+Hostels: peak/uplink=0.45x demand ratio; uplink-to-demand oversubscription=0.45:1 (capacity/demand=2.22x)
+Auditorium: peak/uplink=0.12x demand ratio; uplink-to-demand oversubscription=0.12:1 (capacity/demand=8.33x)
+Data Centre: peak/uplink=0.12x demand ratio; uplink-to-demand oversubscription=0.12:1 (capacity/demand=8.00x)
+Address plan: 10.10.0.0/16; staff VLAN10 10.10.10.0/23; student VLAN20 10.10.20.0/20; guest VLAN30 10.10.40.0/21; CCTV VLAN40 10.10.50.0/23; servers VLAN50 10.10.60.0/24; network management VLAN99 10.10.99.0/24.
+Collapsed-core risk: one core switch failure can isolate all distribution blocks and both ISP paths; redundant dual-core avoids this single point of failure.

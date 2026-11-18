@@ -1,0 +1,6 @@
+Consulting rooms: 35-80 m | PASS | Cat6 UTP
+Pharmacy: 96-96 m | permanent-link limit exceeded; channel may be within 100 m | redesign route / fibre preferred for headroom
+Waiting-hall APs: 60-60 m | PASS | Cat6 UTP
+Main building: 420-420 m | FAIL: exceeds 100 m channel | single-mode fibre recommended
+T568B: white-orange, orange, white-green, blue, white-blue, green, white-brown, brown
+T568A at one end + T568B at the other = crossover wiring; Auto-MDIX usually handles it on modern Ethernet ports.

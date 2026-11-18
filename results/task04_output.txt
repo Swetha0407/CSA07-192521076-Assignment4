@@ -1,0 +1,6 @@
+Pure ALOHA max throughput: 1/(2e) = 0.1839 = 18.39%
+Slotted ALOHA max throughput: 1/e = 0.3679 = 36.79%
+Assuming propagation speed 2e8 m/s (brief prints 2 x 10 m/s): one-way=12.50 us, min frame=250 bits = 31.25 bytes
+ATM overhead: 5/53 = 9.43% of cell; payload efficiency=90.57%
+Ethernet MAC header+FCS: 18/1518 = 1.19% for a 1500-byte payload frame (excluding preamble/IFG)
+Wi-Fi 6 planning: 300 clients / 6 APs = 50 clients/AP; 2.4 GHz reuse channels 1,6,11; assign distinct non-overlapping 5 GHz channels where regulatory domain permits.

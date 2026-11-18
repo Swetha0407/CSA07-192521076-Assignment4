@@ -1,0 +1,5 @@
+Users: 30
+Legacy 10 Mbps shared bus: 0.333 Mbps/user (ideal equal share)
+Switched star: 1000 Mbps dedicated access port/user; shared 10 Gbps server uplink
+Wi-Fi 6: 600 Mbps assumed usable aggregate / 30 = 20.0 Mbps/user
+Conclusion: switched star is preferred for month-end large file transfers; Wi-Fi 6 is complementary access.

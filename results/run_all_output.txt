@@ -1,0 +1,58 @@
+===== Task01/q1_office_redesign.py =====
+Users: 30
+Legacy 10 Mbps shared bus: 0.333 Mbps/user (ideal equal share)
+Switched star: 1000 Mbps dedicated access port/user; shared 10 Gbps server uplink
+Wi-Fi 6: 600 Mbps assumed usable aggregate / 30 = 20.0 Mbps/user
+Conclusion: switched star is preferred for month-end large file transfers; Wi-Fi 6 is complementary access.
+
+===== Task02/q2_topology_failure.py =====
+n=6
+bus   links  5 max ports on one device 2 single-link failures survived 0/5
+ring  links  6 max ports on one device 2 single-link failures survived 6/6
+star  links  6 max ports on one device 6 single-link failures survived 0/6
+mesh  links 15 max ports on one device 5 single-link failures survived 15/15
+n=20
+bus   links 19 max ports on one device 2 single-link failures survived 0/19
+ring  links 20 max ports on one device 2 single-link failures survived 20/20
+star  links 20 max ports on one device 20 single-link failures survived 0/20
+mesh  links 190 max ports on one device 19 single-link failures survived 190/190
+
+===== Task03/q3_cabling_audit.py =====
+Consulting rooms: 35-80 m | PASS | Cat6 UTP
+Pharmacy: 96-96 m | permanent-link limit exceeded; channel may be within 100 m | redesign route / fibre preferred for headroom
+Waiting-hall APs: 60-60 m | PASS | Cat6 UTP
+Main building: 420-420 m | FAIL: exceeds 100 m channel | single-mode fibre recommended
+T568B: white-orange, orange, white-green, blue, white-blue, green, white-brown, brown
+T568A at one end + T568B at the other = crossover wiring; Auto-MDIX usually handles it on modern Ethernet ports.
+
+===== Task04/q4_shared_media.py =====
+Pure ALOHA max throughput: 1/(2e) = 0.1839 = 18.39%
+Slotted ALOHA max throughput: 1/e = 0.3679 = 36.79%
+Assuming propagation speed 2e8 m/s (brief prints 2 x 10 m/s): one-way=12.50 us, min frame=250 bits = 31.25 bytes
+ATM overhead: 5/53 = 9.43% of cell; payload efficiency=90.57%
+Ethernet MAC header+FCS: 18/1518 = 1.19% for a 1500-byte payload frame (excluding preamble/IFG)
+Wi-Fi 6 planning: 300 clients / 6 APs = 50 clients/AP; 2.4 GHz reuse channels 1,6,11; assign distinct non-overlapping 5 GHz channels where regulatory domain permits.
+
+===== Task05/q5_vlan_tag.py =====
+802.1Q tag added to Ethernet frame: 4 bytes (TPID 2 + TCI 2).
+Before segmentation: 1 shared Layer-2 broadcast domain (assumed flat VLAN).
+After segmentation: 3 broadcast domains: VLAN 10 Office, VLAN 20 CCTV, VLAN 30 Guest.
+Access ports are in one VLAN each; trunk carries tagged VLANs 10,20,30.
+Guest ACL blocks VLAN10 and VLAN20 destinations and permits other routed destinations; apply upstream internet policy/NAT as appropriate.
+
+===== Task06/q6_campus_plan.py =====
+Academic: users~1200, devices~1500, estimated peak 3000 Mbps
+Laboratories: users~600, devices~650, estimated peak 2400 Mbps
+Library: users~500, devices~650, estimated peak 1000 Mbps
+Hostels: users~3000, devices~3600, estimated peak 4500 Mbps
+Auditorium: users~800, devices~850, estimated peak 1200 Mbps
+Data Centre: users~100, devices~250, estimated peak 5000 Mbps
+Assumed uplinks: access-to-distribution 10 Gbps; distribution-to-core 40 Gbps; core-to-DC 2x100 Gbps; internet 2x10 Gbps.
+Academic: peak/uplink=0.30x demand ratio; uplink-to-demand oversubscription=0.30:1 (capacity/demand=3.33x)
+Laboratories: peak/uplink=0.24x demand ratio; uplink-to-demand oversubscription=0.24:1 (capacity/demand=4.17x)
+Library: peak/uplink=0.10x demand ratio; uplink-to-demand oversubscription=0.10:1 (capacity/demand=10.00x)
+Hostels: peak/uplink=0.45x demand ratio; uplink-to-demand oversubscription=0.45:1 (capacity/demand=2.22x)
+Auditorium: peak/uplink=0.12x demand ratio; uplink-to-demand oversubscription=0.12:1 (capacity/demand=8.33x)
+Data Centre: peak/uplink=0.12x demand ratio; uplink-to-demand oversubscription=0.12:1 (capacity/demand=8.00x)
+Address plan: 10.10.0.0/16; staff VLAN10 10.10.10.0/23; student VLAN20 10.10.20.0/20; guest VLAN30 10.10.40.0/21; CCTV VLAN40 10.10.50.0/23; servers VLAN50 10.10.60.0/24; network management VLAN99 10.10.99.0/24.
+Collapsed-core risk: one core switch failure can isolate all distribution blocks and both ISP paths; redundant dual-core avoids this single point of failure.
